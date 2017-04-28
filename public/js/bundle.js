@@ -129,7 +129,9 @@ class TableView {
 		this.headerRowEl = document.querySelector("THEAD TR");
 		this.sheetBodyEl = document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
-	}
+	
+		}
+
 
 	renderTable(){
 		this.renderTableHeader();
