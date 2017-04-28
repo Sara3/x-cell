@@ -19,14 +19,12 @@ class TableView {
 	renderFormulaBar(){
 		const currenCellValue = this.model.getValue(this.currentCellLocation);
 		this.formulaBarEl.value = this.normalizeValueForRendering(currenCellValue); 
+		this.formulaBarEl.focus();
 	}
 	initCurrentCell(){
 		this.currentCellLocation = {col: 0, row: 0};
 		this.renderFormulaBar();
 	}
-
-	
-
 
 	attachEventHandlers(){
 		this.sheetBodyEl.addEventListener("click", this.handleSheetClick.bind(this));
@@ -42,6 +40,7 @@ class TableView {
 			this.currentCellLocation = {col: col, row: row};
 			this.renderTableBody();
 		}
+		this.renderFormulaBar();
 	}
 
 
