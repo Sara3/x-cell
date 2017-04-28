@@ -53,7 +53,22 @@ class TableView {
 		this.sheetBodyEl = document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
 	
-		}
+		this.getSum(value);
+		
+	}
+
+	getSum(value){
+		console.log(value);
+		console.log("col ->"+this.currentCellLocation.col);
+		console.log("row ->"+this.currentCellLocation.row);
+		const sumLocation = {col: this.currentCellLocation.col, row: 19};
+		let arr = Array(9).fill(0);
+		let arrIndex = sumLocation.col
+		arr[arrIndex] = parseInt(arr[arrIndex])+parseInt(value);
+		console.log(arr[arrIndex]);
+		this.model.setValue(sumLocation, arr[sumLocation.col]);
+
+	}
 
 
 	renderTable(){
