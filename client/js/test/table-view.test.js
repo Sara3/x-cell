@@ -10,6 +10,22 @@ describe("table-view", ()=>{
 	});
 
 	describe("formula bar", ()=>{
+		it("makes changes to the value of the current cell", ()=>{
+			//set up initial state
+			const model = new TableModel(3,3);
+			const view = new TableView(model);
+			view.init();
+			//inspect initial state
+			let trs = document.querySelectorAll("TBODY TR");
+			let td = trs[0].cells[0];
+			expect(td.textContent).toBe("");
+			//simulate user action 
+			document.querySelector("#formula-bar").value = "65";
+			view.handleFormulaBarChange();
+			//inspect user action 
+			trs = document.querySelectorAll("TBODY TR");
+			expect(trs[0].cells[0].textContent).toBe("65");
+		});
 		it("updates from the value of the current cell ", ()=>{
 			// set up the initial state
 			const model = new TableModel(3,3);
