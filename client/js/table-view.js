@@ -1,7 +1,7 @@
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
 
-
+let arr = Array(9).fill(0);
 class TableView {
 	constructor (model){
 		this.model = model;
@@ -38,18 +38,15 @@ class TableView {
 		this.renderTableBody();
 		this.getSum(value);
 	}
-
+	
 	getSum(value){
-		console.log(value);
-		console.log("col ->"+this.currentCellLocation.col);
-		console.log("row ->"+this.currentCellLocation.row);
+		// console.log(value);
+		// console.log("col ->"+this.currentCellLocation.col);
+		// console.log("row ->"+this.currentCellLocation.row);
 		const sumLocation = {col: this.currentCellLocation.col, row: 19};
-		let arr = Array(9).fill(0);
 		let arrIndex = sumLocation.col
-		arr[arrIndex] = parseInt(arr[arrIndex])+parseInt(value);
-		console.log(arr[arrIndex]);
+		arr[arrIndex] = arr[arrIndex]+parseInt(value);
 		this.model.setValue(sumLocation, arr[sumLocation.col]);
-
 	}
 
 	handleSheetClick(evt){
@@ -66,15 +63,15 @@ class TableView {
 		this.headerRowEl = document.querySelector("THEAD TR");
 		this.sheetBodyEl = document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
-		
-		
 	}
-
 
 
 	renderTable(){
 		this.renderTableHeader();
 		this.renderTableBody();
+	}
+	renderSumRow(){
+
 	}
 
 	renderTableHeader(){
@@ -88,6 +85,9 @@ class TableView {
 		return  this.currentCellLocation.col ===col &&
 			    this.currentCellLocation.row ===row;
 	}
+	lastRow(row){
+		return this.currentCellLocation.row === this.model.numRows-1;
+	}
 
 	renderTableBody(){
 		const fragment = document.createDocumentFragment();
@@ -100,6 +100,9 @@ class TableView {
 
 				if(this.isCurrentCell(col, row)){
 					td.className = "current-cell";
+				}
+				if(this.lastRow(row)){
+					td.className = "sum-cell";
 				}
 
 				tr.appendChild(td);
