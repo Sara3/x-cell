@@ -1,5 +1,9 @@
 table {
 	border-collapse: collapse;
+	margin: 6px;
+}
+input {
+	margin: 6px;
 }
 th, 
 td {
@@ -15,4 +19,12 @@ td {
 
 tfoot tr {
 	background: green;
+}
+
+button {
+	margin: 10px 5px;
+	background: green;
+	height: 50px;
+	width: 100px;
+	border: none;
 }
