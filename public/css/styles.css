@@ -13,6 +13,6 @@ td {
 	background-color: pink; 
 }
 
-.sum-cell{
+tfoot tr {
 	background: green;
 }
