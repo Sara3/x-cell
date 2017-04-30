@@ -38,6 +38,7 @@ class TableView {
 		const value = this.formulaBarEl.value;
 		this.model.setValue(this.currentCellLocation, value);
 		this.renderTableBody();
+		this.renderTableFooter();
 	}
 
 	handleSheetClick(evt){
@@ -46,6 +47,7 @@ class TableView {
 		this.currentCellLocation = {col: col, row: row};
 		this.renderTableBody();
 		this.renderFormulaBar();
+
 	}
 
 
@@ -87,10 +89,6 @@ class TableView {
 	isCurrentCell(col, row){
 		return  this.currentCellLocation.col ===col &&
 			    this.currentCellLocation.row ===row;
-	}
-
-	lastRow(row){
-		return this.currentCellLocation.row === this.model.numRows-1;
 	}
 
 	renderTableBody(){
