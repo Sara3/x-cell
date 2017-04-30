@@ -4,6 +4,7 @@
   "description": "Welcome!",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "build": " browserify client/js/app.js > public/js/bundle.js",
     "watch": "watchify client/js/app.js -o public/js/bundle.js",
     "test": "jest"
