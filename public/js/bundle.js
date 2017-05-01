@@ -4,6 +4,7 @@ const TableView = require("./table-view");
 
 const model = new TableModel();
 const tableView = new TableView(model);
+
 tableView.init();
 
 
@@ -70,9 +71,13 @@ class TabeModel {
 	setValue(location, value){
 		this.data[this._getCellId(location)] = value;
 	}
-	add(){
+	addRow(){
 		this.numRows=this.numRows+1;
 		return this.numRows;
+	}
+	addColumn(){
+		this.numCols =this.numCols+1;
+		return this.numCols;
 	}
 }
 
@@ -82,7 +87,7 @@ module.exports = TabeModel;
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
 const TableModel = require("./table-model");
-const app = require("./app.js");
+
 
 class TableView {
 
@@ -115,12 +120,18 @@ class TableView {
 	attachEventHandlers(){
 		this.sheetBodyEl.addEventListener("click", this.handleSheetClick.bind(this));
 		this.formulaBarEl.addEventListener("keyup", this.handleFormulaBarChange.bind(this));
-		this.addRow.addEventListener("click", this.add.bind(this));
+		this.addRow.addEventListener("click", this.addRowButton.bind(this));
+		this.addCol.addEventListener("click", this.addColButton.bind(this));
 	}
-	add(){
-		console.log("clicked");
-		this.model.add();
-		
+
+	addColButton(){
+		this.model.addColumn();
+		this.renderTable();
+	}
+
+	addRowButton(){
+		this.model.addRow();
+		this.renderTable();
 	}
 	
 	handleFormulaBarChange(evt){
@@ -141,11 +152,12 @@ class TableView {
 
 
 	initDomReferences(){
-		this.headerRowEl =  document.querySelector("THEAD TR");
-		this.sheetBodyEl =  document.querySelector("TBODY");
+		this.headerRowEl  = document.querySelector("THEAD TR");
+		this.sheetBodyEl  = document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
-		this.footerRowEl =  document.querySelector("TFOOT TR");
-		this.addRow      = document.querySelector("#addRow");
+		this.footerRowEl  = document.querySelector("TFOOT TR");
+		this.addRow       = document.querySelector("#addRow");
+		this.addCol       = document.querySelector("#addCol");
 
 	}
 
@@ -206,4 +218,4 @@ class TableView {
 
 module.exports = TableView;
 
-},{"./app.js":1,"./array-util":2,"./dom-util":3,"./table-model":4}]},{},[1]);
+},{"./array-util":2,"./dom-util":3,"./table-model":4}]},{},[1]);
