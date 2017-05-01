@@ -16,6 +16,10 @@ class TabeModel {
 	setValue(location, value){
 		this.data[this._getCellId(location)] = value;
 	}
+	add(){
+		this.numRows=this.numRows+1;
+		return this.numRows;
+	}
 }
 
 

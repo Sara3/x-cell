@@ -70,6 +70,10 @@ class TabeModel {
 	setValue(location, value){
 		this.data[this._getCellId(location)] = value;
 	}
+	add(){
+		this.numRows=this.numRows+1;
+		return this.numRows;
+	}
 }
 
 
@@ -77,6 +81,8 @@ module.exports = TabeModel;
 },{}],5:[function(require,module,exports){
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
+const TableModel = require("./table-model");
+const app = require("./app.js");
 
 class TableView {
 
@@ -109,6 +115,12 @@ class TableView {
 	attachEventHandlers(){
 		this.sheetBodyEl.addEventListener("click", this.handleSheetClick.bind(this));
 		this.formulaBarEl.addEventListener("keyup", this.handleFormulaBarChange.bind(this));
+		this.addRow.addEventListener("click", this.add.bind(this));
+	}
+	add(){
+		console.log("clicked");
+		this.model.add();
+		
 	}
 	
 	handleFormulaBarChange(evt){
@@ -133,6 +145,8 @@ class TableView {
 		this.sheetBodyEl =  document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
 		this.footerRowEl =  document.querySelector("TFOOT TR");
+		this.addRow      = document.querySelector("#addRow");
+
 	}
 
 
@@ -191,4 +205,5 @@ class TableView {
 }
 
 module.exports = TableView;
-},{"./array-util":2,"./dom-util":3}]},{},[1]);
+
+},{"./app.js":1,"./array-util":2,"./dom-util":3,"./table-model":4}]},{},[1]);

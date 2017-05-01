@@ -1,5 +1,7 @@
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
+const TableModel = require("./table-model");
+const app = require("./app.js");
 
 class TableView {
 
@@ -32,6 +34,12 @@ class TableView {
 	attachEventHandlers(){
 		this.sheetBodyEl.addEventListener("click", this.handleSheetClick.bind(this));
 		this.formulaBarEl.addEventListener("keyup", this.handleFormulaBarChange.bind(this));
+		this.addRow.addEventListener("click", this.add.bind(this));
+	}
+	add(){
+		console.log("clicked");
+		this.model.add();
+		
 	}
 	
 	handleFormulaBarChange(evt){
@@ -56,6 +64,8 @@ class TableView {
 		this.sheetBodyEl =  document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
 		this.footerRowEl =  document.querySelector("TFOOT TR");
+		this.addRow      = document.querySelector("#addRow");
+
 	}
 
 
