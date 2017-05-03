@@ -1,6 +1,6 @@
-const {getLetterRange} = require ("./array-util");
-const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
-const TableModel = require("./table-model");
+const {getLetterRange} = require ('./array-util');
+const {removeChildren, createTR, createTH, createTD} = require('./dom-util');
+const TableModel = require('./table-model');
 
 
 class TableView {
@@ -17,7 +17,7 @@ class TableView {
 	}
 
 	normalizeValueForRendering(value){
-		return value || "";
+		return value || '';
 	}
 
 	renderFormulaBar(){
@@ -32,10 +32,10 @@ class TableView {
 	}
 
 	attachEventHandlers(){
-		this.sheetBodyEl.addEventListener("click", this.handleSheetClick.bind(this));
-		this.formulaBarEl.addEventListener("keyup", this.handleFormulaBarChange.bind(this));
-		this.addRow.addEventListener("click", this.addRowButton.bind(this));
-		this.addCol.addEventListener("click", this.addColButton.bind(this));
+		this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
+		this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
+		this.addRow.addEventListener('click', this.addRowButton.bind(this));
+		this.addCol.addEventListener('click', this.addColButton.bind(this));
 	}
 
 	addColButton(){
@@ -64,12 +64,12 @@ class TableView {
 	}
 
 	initDomReferences(){
-		this.headerRowEl  = document.querySelector("THEAD TR");
-		this.sheetBodyEl  = document.querySelector("TBODY");
-		this.formulaBarEl = document.querySelector("#formula-bar");
-		this.footerRowEl  = document.querySelector("TFOOT TR");
-		this.addRow       = document.querySelector("#addRow");
-		this.addCol       = document.querySelector("#addCol");
+		this.headerRowEl  = document.querySelector('THEAD TR');
+		this.sheetBodyEl  = document.querySelector('TBODY');
+		this.formulaBarEl = document.querySelector('#formula-bar');
+		this.footerRowEl  = document.querySelector('TFOOT TR');
+		this.addRow       = document.querySelector('#addRow');
+		this.addCol       = document.querySelector('#addCol');
 	}
 
 	renderTable(){
@@ -80,7 +80,7 @@ class TableView {
 
 	renderTableHeader(){
 		removeChildren(this.headerRowEl); 
-		getLetterRange("A", this.model.numCols)
+		getLetterRange('A', this.model.numCols)
 		.map(colLebel => createTH(colLebel))
 		.forEach(th => this.headerRowEl.appendChild(th));
 	}
@@ -90,7 +90,7 @@ class TableView {
 		for(let column = 0; column < this.model.numCols; column++){
 			let sum = 0; 
 			for(let row = 0; row < this.model.numRows; row++){
-				const value = parseInt(this.model.getValue({"col": column, "row": row}), 10);
+				const value = parseInt(this.model.getValue({'col': column, 'row': row}), 10);
 				if(!isNaN(value)){
 					sum += value; 	
 				}
@@ -114,7 +114,7 @@ class TableView {
 				const td = createTD(value);
 
 				if(this.isCurrentCell(col, row)){
-					td.className = "current-cell";
+					td.className = 'current-cell';
 				}
 
 				tr.appendChild(td);

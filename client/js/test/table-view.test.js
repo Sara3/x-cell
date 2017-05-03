@@ -82,44 +82,44 @@ describe("table-view", ()=>{
 			const model = new TableModel(3, 3);
 			const view = new TableView(model);
 
-			model.setValue({col: 2, row: 1}, "123");
+			model.setValue({col: 2, row: 1}, '123');
 			view.init();
 
-			const trs = document.querySelectorAll("TBODY TR");
-			expect(trs[1].cells[2].textContent).toBe("123");
+			const trs = document.querySelectorAll('TBODY TR');
+			expect(trs[1].cells[2].textContent).toBe('123');
 		});
 	});
 
-	describe("table header", ()=>{
+	describe('table header', ()=>{
 
-		it("has valid colum labels", ()=>{
+		it('has valid colum labels', ()=>{
 			const numCols = 6;
 			const numRows = 10;
 			const model = new TableModel(numCols, numRows);
 			const view = new TableView(model);
 			view.init();
 
-			let ths = document.querySelectorAll("THEAD TH");
+			let ths = document.querySelectorAll('THEAD TH');
 			expect(ths.length).toBe(numCols);
 
 			let labelText = Array.from(ths).map(el => el.textContent);
-			expect(labelText).toEqual(["A", "B", "C", "D", "E", "F"]);
+			expect(labelText).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
 
 
 		});
 	});
 
-	describe("table footer", ()=>{
+	describe('table footer', ()=>{
 		
-		it("has valid number of colums", ()=>{
+		it('has valid number of colums', ()=>{
 			const model = new TableModel(3, 3);
 			const view = new TableView(model);
 			model.setValue({col: 0, row: 1}, 1);
 			model.setValue({col: 0, row: 2}, 3);
 			view.init();
 
-			const tds = document.querySelectorAll("TFOOT TR");
-			expect(tds[0].textContent).toEqual("4");
+			const tds = document.querySelectorAll('TFOOT TR');
+			expect(tds[0].textContent).toEqual('4');
 		});
 
 	 });

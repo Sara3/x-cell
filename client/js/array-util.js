@@ -3,7 +3,7 @@ const getRange = function (fromName, toNum){
 		                (unused, i) => i + fromName);
 };
 
-const getLetterRange = function(firstLetter ="A", numLetters){
+const getLetterRange = function(firstLetter ='A', numLetters){
 const rangeStart = firstLetter.charCodeAt(0);
 const rangeEnd = rangeStart+numLetters-1;
 return getRange(rangeStart, rangeEnd)
