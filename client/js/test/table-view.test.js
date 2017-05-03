@@ -44,12 +44,6 @@ describe("table-view", ()=>{
 		});
 	});
 
-
-
-
-
-
-
 	describe("table body", ()=>{
 		it("highlights the current cell when clicked", ()=>{
 			//set up the initial state
@@ -110,4 +104,18 @@ describe("table-view", ()=>{
 
 		});
 	});
+
+	describe("table footer", ()=>{
+		it("has valid number of colums", ()=>{
+			const model = new TableModel(3, 3);
+			const view = new TableView(model);
+			model.setValue({col: 0, row: 1}, 1);
+			model.setValue({col: 0, row: 2}, 3);
+			view.init();
+
+			const tds = document.querySelectorAll("TFOOT TR");
+			expect(tds[0].textContent).toEqual("4");
+		});
+
+	 });
 });

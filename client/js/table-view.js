@@ -1,17 +1,19 @@
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
 
-
 class TableView {
+
 	constructor (model){
 		this.model = model;
 	}
+
 	init(){
-		this.initDomeReferences();
+		this.initDomReferences();
 		this.initCurrentCell();
 		this.renderTable();
 		this.attachEventHandlers();
 	}
+
 	normalizeValueForRendering(value){
 		return value || "";
 	}
@@ -20,8 +22,8 @@ class TableView {
 		const currenCellValue = this.model.getValue(this.currentCellLocation);
 		this.formulaBarEl.value = this.normalizeValueForRendering(currenCellValue); 
 		this.formulaBarEl.focus();
-
 	}
+
 	initCurrentCell(){
 		this.currentCellLocation = {col: 0, row: 0};
 		this.renderFormulaBar();
@@ -36,43 +38,29 @@ class TableView {
 		const value = this.formulaBarEl.value;
 		this.model.setValue(this.currentCellLocation, value);
 		this.renderTableBody();
-		this.getSum(value);
-		
 	}
-
-	getSum(value){
-		console.log(value);
-		console.log("col ->"+this.currentCellLocation.col);
-		console.log("row ->"+this.currentCellLocation.row);
-		const sumLocation = {col: this.currentCellLocation.col, row: 19};
-		let arr = Array(9).fill(0);
-		let arrIndex = sumLocation.col
-		arr[arrIndex] = parseInt(arr[arrIndex])+parseInt(value);
-		console.log(arr[arrIndex]);
-		this.model.setValue(sumLocation, arr[sumLocation.col]);
-
-	}
-
 
 	handleSheetClick(evt){
 		const col = evt.target.cellIndex;
 		const row = evt.target.parentElement.rowIndex -1;
-
 		this.currentCellLocation = {col: col, row: row};
 		this.renderTableBody();
 		this.renderFormulaBar();
 	}
 
 
-	initDomeReferences(){
-		this.headerRowEl = document.querySelector("THEAD TR");
-		this.sheetBodyEl = document.querySelector("TBODY");
+	initDomReferences(){
+		this.headerRowEl =  document.querySelector("THEAD TR");
+		this.sheetBodyEl =  document.querySelector("TBODY");
 		this.formulaBarEl = document.querySelector("#formula-bar");
+		this.footerRowEl =  document.querySelector("TFOOT TR");
 	}
+
 
 	renderTable(){
 		this.renderTableHeader();
 		this.renderTableBody();
+		this.renderTableFooter();
 	}
 
 	renderTableHeader(){
@@ -82,9 +70,27 @@ class TableView {
 		.forEach(th => this.headerRowEl.appendChild(th));
 	}
 
+	renderTableFooter(){
+		removeChildren(this.footerRowEl);
+		for(var column=0; column <this.model.numCols; column++){
+			let sum =0; 
+			for(var row=0; row<this.model.numRows; row++){
+				const value = parseInt(this.model.getValue({"col": column, "row": row}), 10);
+				if(!isNaN(value)){
+					sum += value; 	
+				}
+			}
+			this.footerRowEl.appendChild(createTD(sum));
+		}
+	}
+
 	isCurrentCell(col, row){
 		return  this.currentCellLocation.col ===col &&
 			    this.currentCellLocation.row ===row;
+	}
+
+	lastRow(row){
+		return this.currentCellLocation.row === this.model.numRows-1;
 	}
 
 	renderTableBody(){
