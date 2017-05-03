@@ -2,11 +2,11 @@ table {
 	border-collapse: collapse;
 	margin: 6px;
 }
+
 input {
 	margin: 6px;
 }
-th, 
-td {
+th, td {
 	border: 1px solid black;
 	min-width: 100px;
 	height: 25px;

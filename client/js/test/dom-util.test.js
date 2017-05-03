@@ -1,7 +1,7 @@
 const { createTR,
-		createTH,
-		createTD,
-		removeChildren} = require("../dom-util");
+				createTH,
+				createTD,
+				removeChildren} = require("../dom-util");
 
 describe("dom-util", ()=>{
 	describe("DOM creation functions", ()=>{
