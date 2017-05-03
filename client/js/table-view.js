@@ -61,9 +61,7 @@ class TableView {
 		this.currentCellLocation = {col: col, row: row};
 		this.renderTableBody();
 		this.renderFormulaBar();
-
 	}
-
 
 	initDomReferences(){
 		this.headerRowEl  = document.querySelector("THEAD TR");
@@ -72,9 +70,7 @@ class TableView {
 		this.footerRowEl  = document.querySelector("TFOOT TR");
 		this.addRow       = document.querySelector("#addRow");
 		this.addCol       = document.querySelector("#addCol");
-
 	}
-
 
 	renderTable(){
 		this.renderTableHeader();

@@ -53,7 +53,7 @@ module.exports = {
 	removeChildren: removeChildren
 };
 },{}],4:[function(require,module,exports){
-class TabeModel {
+class TableModel {
 	constructor(numCols=10, numRows=20){
 		this.numCols = numCols;
 		this.numRows = numRows;
@@ -82,7 +82,7 @@ class TabeModel {
 }
 
 
-module.exports = TabeModel;
+module.exports = TableModel;
 },{}],5:[function(require,module,exports){
 const {getLetterRange} = require ("./array-util");
 const {removeChildren, createTR, createTH, createTD} = require("./dom-util");
@@ -147,9 +147,7 @@ class TableView {
 		this.currentCellLocation = {col: col, row: row};
 		this.renderTableBody();
 		this.renderFormulaBar();
-
 	}
-
 
 	initDomReferences(){
 		this.headerRowEl  = document.querySelector("THEAD TR");
@@ -158,9 +156,7 @@ class TableView {
 		this.footerRowEl  = document.querySelector("TFOOT TR");
 		this.addRow       = document.querySelector("#addRow");
 		this.addCol       = document.querySelector("#addCol");
-
 	}
-
 
 	renderTable(){
 		this.renderTableHeader();

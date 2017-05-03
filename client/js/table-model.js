@@ -1,4 +1,4 @@
-class TabeModel {
+class TableModel {
 	constructor(numCols=10, numRows=20){
 		this.numCols = numCols;
 		this.numRows = numRows;
@@ -27,4 +27,4 @@ class TabeModel {
 }
 
 
-module.exports = TabeModel;
+module.exports = TableModel;
