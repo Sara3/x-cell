@@ -101,14 +101,14 @@ class TableView {
 
 	isCurrentCell(col, row){
 		return  this.currentCellLocation.col === col &&
-			    this.currentCellLocation.row === row;
+			    	this.currentCellLocation.row === row;
 	}
 
 	renderTableBody(){
 		const fragment = document.createDocumentFragment();
-		for(let row =0; row<this.model.numRows; row++){
+		for(let row = 0; row < this.model.numRows; row++){
 			const tr = createTR();
-			for(let col = 0; col<this.model.numCols; col++){
+			for(let col = 0; col < this.model.numCols; col++){
 				const position = {col: col, row: row};
 				const value = this.model.getValue(position);
 				const td = createTD(value);
