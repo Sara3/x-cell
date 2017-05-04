@@ -81,8 +81,8 @@ class TableView {
 	renderTableHeader(){
 		removeChildren(this.headerRowEl); 
 		getLetterRange('A', this.model.numCols)
-		.map(colLebel => createTH(colLebel))
-		.forEach(th => this.headerRowEl.appendChild(th));
+			.map(colLebel => createTH(colLebel))
+			.forEach(th => this.headerRowEl.appendChild(th));
 	}
 
 	renderTableFooter(){
