@@ -34,8 +34,8 @@ class TableView {
 	attachEventHandlers(){
 		this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
 		this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
-		this.addRow.addEventListener('click', this.addRowButton.bind(this));
-		this.addCol.addEventListener('click', this.addColButton.bind(this));
+		this.addRows.addEventListener('click', this.addRowButton.bind(this));
+		this.addCols.addEventListener('click', this.addColButton.bind(this));
 	}
 
 	addColButton(){
@@ -68,8 +68,8 @@ class TableView {
 		this.sheetBodyEl  = document.querySelector('TBODY');
 		this.formulaBarEl = document.querySelector('#formula-bar');
 		this.footerRowEl  = document.querySelector('TFOOT TR');
-		this.addRow       = document.querySelector('#addRow');
-		this.addCol       = document.querySelector('#addCol');
+		this.addRows       = document.querySelector('#addRow');
+		this.addCols       = document.querySelector('#addCol');
 	}
 
 	renderTable(){

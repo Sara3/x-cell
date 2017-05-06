@@ -105,13 +105,12 @@ describe("table-view", ()=>{
 			let labelText = Array.from(ths).map(el => el.textContent);
 			expect(labelText).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
 
-
 		});
 	});
 
 	describe('table footer', ()=>{
 		
-		it('has valid number of colums', ()=>{
+		it('calculates correctly', ()=>{
 			const model = new TableModel(3, 3);
 			const view = new TableView(model);
 			model.setValue({col: 0, row: 1}, 1);
